@@ -6,18 +6,21 @@ class Park extends Phaser.Scene {
     preload() {
         console.log("Preloading Park scene assets...");
         // Preload assets here
-        this.load.image('background', './assets/background.png');
+        this.load.image('morning', './assets/backgrounds/morning.png');
+        this.load.image('noon', './assets/backgrounds/noon.png');
+        this.load.image('afternoon', './assets/backgrounds/afternoon.png');
         this.load.spritesheet('football', './assets/football.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('bike', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('book', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
         this.load.audio('bgm', './assets/bgm.mp3');
         this.load.audio('interaction', './assets/interact.wav');
+        this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
     }
 
     create() {
         console.log("Creating Park scene...");
         // add background and music
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.background = this.add.image(0, 0, this.backgrounds[0]).setOrigin(0, 0);
         this.sound.play("bgm", { loop: true });
         
 
@@ -29,7 +32,7 @@ class Park extends Phaser.Scene {
 
         // time of day stuff
         this.timeOfDay = 0;
-        this.maxTime = 4;
+        this.maxTime = 3;
     }
 
     update() {

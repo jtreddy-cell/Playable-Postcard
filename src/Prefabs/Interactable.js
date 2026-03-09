@@ -17,6 +17,7 @@ class Interactable extends Phaser.GameObjects.Sprite {
     onInteraction() {
         this.scene.sound.play('interaction');
         this.scene.timeOfDay += 1;
+        this.scene.background.setTexture(this.scene.backgrounds[this.scene.timeOfDay]);  
         switch (this.name) {
             case 'football':
                 console.log("Interacted with " + this.name);
