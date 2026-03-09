@@ -1,0 +1,28 @@
+// Playable Postcard Main Config
+// Name: Jay Reddy
+// Date: March 2026
+
+"use strict"
+
+let config = {
+    type: Phaser.AUTO,
+    width: 960,
+    height: 480,
+    render: {
+        pixelArt: true
+    },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: false
+        }
+    },
+    scene: [Park, Message]
+}
+
+let game = new Phaser.Game(config);
+
+// reserve keyboard bindings
+let keyUP, keyDOWN, keySPACE, keyESC
+
+let { width, height } = game.config
