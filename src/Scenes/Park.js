@@ -11,6 +11,7 @@ class Park extends Phaser.Scene {
         this.load.spritesheet('bike', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('book', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
         this.load.audio('bgm', './assets/bgm.mp3');
+        this.load.audio('interaction', './assets/interact.wav');
     }
 
     create() {
@@ -26,13 +27,17 @@ class Park extends Phaser.Scene {
         this.book = new Interactable(this, 600, 300, 'book', 0, 'book');
 
 
-        // State machine variables
+        // time of day stuff
         this.timeOfDay = 0;
-        this.maxTime = 5;
+        this.maxTime = 4;
     }
 
     update() {
-        // Switch
+        // Switch to next scene after max time
+        if (this.timeOfDay >= this.maxTime) {
+            console.log("Max time reached, switching to next scene...");
+            this.scene.start("messageScene");
+        }
     }
 
 }

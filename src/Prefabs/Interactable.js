@@ -15,6 +15,7 @@ class Interactable extends Phaser.GameObjects.Sprite {
     }
 
     onInteraction() {
+        this.scene.sound.play('interaction');
         this.scene.timeOfDay += 1;
         switch (this.name) {
             case 'football':
