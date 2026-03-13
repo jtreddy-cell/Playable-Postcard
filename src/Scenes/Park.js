@@ -9,9 +9,9 @@ class Park extends Phaser.Scene {
         this.load.image('morning', './assets/backgrounds/morning.png');
         this.load.image('noon', './assets/backgrounds/noon.png');
         this.load.image('afternoon', './assets/backgrounds/afternoon.png');
-        this.load.spritesheet('football', './assets/football.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.image('football', './assets/football.png');
         this.load.spritesheet('bike', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
-        this.load.spritesheet('book', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.atlas("book","assets/book.png","assets/book.json");
         this.load.audio('bgm', './assets/bgm.mp3');
         this.load.audio('interaction', './assets/interact.wav');
         this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
@@ -22,12 +22,23 @@ class Park extends Phaser.Scene {
         // add background and music
         this.background = this.add.image(0, 0, this.backgrounds[0]).setOrigin(0, 0);
         this.sound.play("bgm", { loop: true });
-        
+
+        // Define book turning animation
+        this.anims.create({
+            key: 'book_turn',
+            frames: this.anims.generateFrameNames("book",{
+                prefix:"f",
+                start:0,
+                end:41
+            }),
+            frameRate:20,
+            repeat:0
+        });
 
         // add interactive objects
-        this.football = new Interactable(this, 200, 300, 'football', 0, 'football');
-        this.bike = new Interactable(this, 400, 300, 'bike', 0, 'bike');
-        this.book = new Interactable(this, 600, 300, 'book', 0, 'book');
+        this.football = new Interactable(this, 200, 400, 'football', 0, 'football');
+        this.bike = new Interactable(this, 400, 400, 'bike', 0, 'bike');
+        this.book = new Interactable(this, 600, 400, 'book', 0, 'book');
 
 
         // time of day stuff
