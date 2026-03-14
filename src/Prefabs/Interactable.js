@@ -15,8 +15,6 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
     }
 
     onInteraction() {
-        this.scene.sound.play('interaction');
-
         const updateTime = () => {
             this.scene.timeOfDay += 1;
             this.scene.background.setTexture(this.scene.backgrounds[this.scene.timeOfDay]);
@@ -24,7 +22,7 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
 
         switch (this.name) {
             case 'football':
-                console.log("Interacted with " + this.name);
+                this.scene.sound.play('interaction');
                 // Football is kicked into the distance and disappears. Gets smaller and smaller until it disappears.
                 this.scene.tweens.add({
                     targets: this,
@@ -40,12 +38,22 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                     }
                 });
                 break;
-            case 'bike':
-                console.log("Interacted with " + this.name);
-                updateTime();
+            case 'squirrel':
+                // Squirrel runs across the screen to the left and disappears.
+                this.scene.sound.play('squirrel_sound');
+                this.setFlipX(true);
+                this.play('squirrel_run');
+                this.scene.tweens.add({
+                    targets: this,
+                    x: -this.width,
+                    duration: 2000,
+                    ease: 'Linear',
+                    onComplete: () => {
+                        this.destroy();
+                    }
+                });
                 break;
             case 'book':
-                console.log("Interacted with " + this.name);
                 this.play('book_turn');
                 this.once('animationcomplete', () => {
                     updateTime();

@@ -3,25 +3,11 @@ class Park extends Phaser.Scene {
         super("parkScene");
     }
 
-    preload() {
-        console.log("Preloading Park scene assets...");
-        // Preload assets here
-        this.load.image('morning', './assets/backgrounds/morning.png');
-        this.load.image('noon', './assets/backgrounds/noon.png');
-        this.load.image('afternoon', './assets/backgrounds/afternoon.png');
-        this.load.image('football', './assets/football.png');
-        this.load.spritesheet('bike', './assets/bike.png', { frameWidth: 64, frameHeight: 64 });
-        this.load.atlas("book","assets/book.png","assets/book.json");
-        this.load.audio('bgm', './assets/bgm.mp3');
-        this.load.audio('interaction', './assets/interact.wav');
-        this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
-    }
-
     create() {
         console.log("Creating Park scene...");
         // add background and music
+        this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
         this.background = this.add.image(0, 0, this.backgrounds[0]).setOrigin(0, 0);
-        this.sound.play("bgm", { loop: true });
 
         // Define book turning animation
         this.anims.create({
@@ -35,9 +21,26 @@ class Park extends Phaser.Scene {
             repeat:0
         });
 
+        // Define squirrel animations
+        this.anims.create({
+            key: 'squirrel_idle',
+            frames: this.anims.generateFrameNumbers('squirrel', { start: 8, end: 13 }),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'squirrel_run',
+            frames: this.anims.generateFrameNumbers('squirrel', { start: 16, end: 23 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        // Define s2
+
         // add interactive objects
         this.football = new Interactable(this, 200, 400, 'football', 0, 'football');
-        this.bike = new Interactable(this, 400, 400, 'bike', 0, 'bike');
+        this.squirrel = new Interactable(this, 400, 300, 'squirrel', 0, 'squirrel');
         this.book = new Interactable(this, 600, 400, 'book', 0, 'book');
 
 
