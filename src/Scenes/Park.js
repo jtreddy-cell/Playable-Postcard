@@ -6,7 +6,7 @@ class Park extends Phaser.Scene {
     create() {
         console.log("Creating Park scene...");
         // add background and music
-        this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
+        this.backgrounds = ['morning', 'noon', 'afternoon', 'evening'];
         this.background = this.add.image(0, 0, this.backgrounds[0]).setOrigin(0, 0);
 
         // Fade in
@@ -49,7 +49,7 @@ class Park extends Phaser.Scene {
 
         // time of day stuff
         this.timeOfDay = 0;
-        this.maxTime = 3;
+        this.maxTime = 4;
     }
 
     update() {

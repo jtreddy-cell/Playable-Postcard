@@ -8,6 +8,8 @@ class Title extends Phaser.Scene {
         this.load.image('morning', './assets/backgrounds/morning.png');
         this.load.image('noon', './assets/backgrounds/noon.png');
         this.load.image('afternoon', './assets/backgrounds/afternoon.png');
+        this.load.image('evening', './assets/backgrounds/evening.png');
+        this.load.image('message', './assets/backgrounds/message.png');
         this.load.image('football', './assets/football.png');
         this.load.spritesheet('squirrel', './assets/squirrel.png', { frameWidth: 48, frameHeight: 48 });
         this.load.atlas("book", "assets/book.png", "assets/book.json");

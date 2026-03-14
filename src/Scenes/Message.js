@@ -4,11 +4,12 @@ class Message extends Phaser.Scene {
     }
 
     create() {
+        // add background
+        this.add.image(0, 0, 'message').setOrigin(0, 0);
 
         let textConfig = {
             fontFamily: 'Courier',
             fontSize: '32px',
-            backgroundColor: '#000000',
             color: '#FFFFFF',
             align: 'center',
             padding: {

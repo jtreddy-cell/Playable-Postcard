@@ -57,7 +57,6 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                 this.play('book_turn');
                 this.once('animationcomplete', () => {
                     updateTime();
-                    this.destroy(); 
                 });
                 break;
             default:
