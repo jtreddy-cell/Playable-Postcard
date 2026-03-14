@@ -9,16 +9,19 @@ class Park extends Phaser.Scene {
         this.backgrounds = ['morning', 'noon', 'afternoon', 'evening', 'night'];
         this.background = this.add.image(0, 0, this.backgrounds[0]).setOrigin(0, 0);
 
+        // Fade in
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+
         // Define book turning animation
         this.anims.create({
             key: 'book_turn',
-            frames: this.anims.generateFrameNames("book",{
-                prefix:"f",
-                start:0,
-                end:41
+            frames: this.anims.generateFrameNames("book", {
+                prefix: "f",
+                start: 0,
+                end: 41
             }),
-            frameRate:20,
-            repeat:0
+            frameRate: 20,
+            repeat: 0
         });
 
         // Define squirrel animations

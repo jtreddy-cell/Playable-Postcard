@@ -4,8 +4,7 @@ class Message extends Phaser.Scene {
     }
 
     create() {
-        console.log("Creating Message scene...");
-        
+
         let textConfig = {
             fontFamily: 'Courier',
             fontSize: '32px',
@@ -26,7 +25,7 @@ class Message extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.restartKey)) {
-            this.scene.start('Park');
+            this.scene.start('parkScene');
         }
     }
 }

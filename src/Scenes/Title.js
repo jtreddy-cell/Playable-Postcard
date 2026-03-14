@@ -1,15 +1,16 @@
-class Title extends Phaser.Scene{
+class Title extends Phaser.Scene {
     constructor() {
         super("titleScene");
-    }  
+    }
 
     preload() {
+        this.load.image('title', './assets/backgrounds/title.png');
         this.load.image('morning', './assets/backgrounds/morning.png');
         this.load.image('noon', './assets/backgrounds/noon.png');
         this.load.image('afternoon', './assets/backgrounds/afternoon.png');
         this.load.image('football', './assets/football.png');
         this.load.spritesheet('squirrel', './assets/squirrel.png', { frameWidth: 48, frameHeight: 48 });
-        this.load.atlas("book","assets/book.png","assets/book.json");
+        this.load.atlas("book", "assets/book.png", "assets/book.json");
         this.load.audio('bgm', './assets/bgm.mp3');
         this.load.audio('interaction', './assets/interact.wav');
         this.load.audio('squirrel_sound', './assets/squirrel.mp3');
@@ -17,7 +18,7 @@ class Title extends Phaser.Scene{
 
     create() {
         // add background and music
-        this.add.image(0, 0, 'morning').setOrigin(0, 0);
+        this.add.image(0, 0, 'title').setOrigin(0, 0);
         this.sound.play("bgm", { loop: true });
 
         // Display title text
@@ -34,10 +35,23 @@ class Title extends Phaser.Scene{
 
         this.add.text(game.config.width / 2, game.config.height / 2 - 50, 'Playable Postcard', textConfig).setOrigin(0.5);
 
+        // Display instructions text below title
+        let instructionConfig = {
+            fontFamily: 'Courier',
+            fontSize: '24px',
+            color: '#FFFFFF',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            }
+        }
+        this.add.text(game.config.width / 2, game.config.height / 2 + 20, 'Click to start. Press on objects in the park and see what happens!', instructionConfig).setOrigin(0.5);
+
         // Display credits text in bottom left corner
         let creditConfig = {
             fontFamily: 'Courier',
-            fontSize: '16px',
+            fontSize: '14px',
             color: '#FFFFFF',
             align: 'left',
             padding: {
@@ -45,14 +59,19 @@ class Title extends Phaser.Scene{
                 bottom: 5,
             }
         }
-        this.add.text(10, game.config.height - 30, '', creditConfig).setOrigin(0, 0.5);
-        
+        this.add.text(10, game.config.height - 60, 'Credits:\nArt Credits:\nFootball sprite by helac_dokugan on itch.io\nBook Sprite by Stagnation on OpenGameArt.org\nSquirrel Sprite by Elthens Pixel Art Shop on itch.io\nAudio Credits:\nMusic by juliush on Pixabay\nSquirrel sound effect by floraphonic on Pixabay\n', creditConfig).setOrigin(0, 0.5);
+
     }
 
     update() {
         // Wait for player to click to start the game
-        if (this.input.activePointer.isDown) {
-            this.scene.start('parkScene');
+        if (this.input.activePointer.isDown && !this.isTransitioning) {
+            this.isTransitioning = true;
+            this.cameras.main.fadeOut(1000, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.start('parkScene');
+                this.isTransitioning = false;
+            });
         }
     }
 }
