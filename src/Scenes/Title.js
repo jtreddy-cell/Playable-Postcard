@@ -11,6 +11,7 @@ class Title extends Phaser.Scene {
         this.load.image('afternoon', './assets/backgrounds/afternoon.png');
         this.load.image('evening', './assets/backgrounds/evening.png');
         this.load.image('message', './assets/backgrounds/message.png');
+        this.load.image('transition', './assets/backgrounds/transition.png');
 
         // sprites 
         this.load.image('football', './assets/football.png');

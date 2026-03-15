@@ -56,12 +56,17 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                 break;
             case 'book':
                 this.play('book_turn');
+                this.scene.sound.play('interaction');
                 this.once('animationcomplete', () => {
-                    updateTime();
-                    this.destroy();
+                    // wait a moment before updating time and destroying to let the last frame of the animation show
+                    this.scene.time.delayedCall(500, () => {
+                        updateTime();
+                        this.destroy();
+                    });
                 });
                 break;
             case 'soccer':
+                this.scene.sound.play('interaction');
                 // Soccer ball bounces up and down a few times before disappearing. 
                 this.scene.tweens.add({
                     targets: this,

@@ -18,10 +18,10 @@ class Park extends Phaser.Scene {
             frames: this.anims.generateFrameNames("book", {
                 prefix: "f",
                 start: 0,
-                end: 41
+                end: 40
             }),
             frameRate: 20,
-            repeat: 0
+            repeat: 0,
         });
 
         // Define squirrel animations
@@ -40,12 +40,16 @@ class Park extends Phaser.Scene {
         });
 
         // add interactive objects
-        this.football = new Interactable(this, 200, 400, 'football', 0, 'football');
-        this.soccer = new Interactable(this, 300, 400, 'soccer', 0, 'soccer');
+        this.football = new Interactable(this, 250, 375, 'football', 0, 'football');
+        this.soccer = new Interactable(this, 850, 325, 'soccer', 0, 'soccer');
+        this.soccer.setScale(0.75);
         this.squirrel = new Interactable(this, 400, 300, 'squirrel', 0, 'squirrel');
         this.squirrel.play('squirrel_idle');
         this.book = new Interactable(this, 500, 400, 'book', 0, 'book');
 
+        this.book.on('animationcomplete-book_turn', () => {
+            this.book.setFrame('f0');
+        });
 
         // time of day stuff
         this.timeOfDay = 0;
@@ -55,8 +59,7 @@ class Park extends Phaser.Scene {
     update() {
         // Switch to next scene after max time
         if (this.timeOfDay >= this.maxTime) {
-            console.log("Max time reached, switching to next scene...");
-            this.scene.start("messageScene");
+            this.scene.start('messageScene');
         }
     }
 
