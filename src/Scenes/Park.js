@@ -39,12 +39,12 @@ class Park extends Phaser.Scene {
             repeat: -1
         });
 
-        // Define s2
-
         // add interactive objects
         this.football = new Interactable(this, 200, 400, 'football', 0, 'football');
+        this.soccer = new Interactable(this, 300, 400, 'soccer', 0, 'soccer');
         this.squirrel = new Interactable(this, 400, 300, 'squirrel', 0, 'squirrel');
-        this.book = new Interactable(this, 600, 400, 'book', 0, 'book');
+        this.squirrel.play('squirrel_idle');
+        this.book = new Interactable(this, 500, 400, 'book', 0, 'book');
 
 
         // time of day stuff

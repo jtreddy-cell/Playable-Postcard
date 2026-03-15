@@ -49,6 +49,7 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                     duration: 2000,
                     ease: 'Linear',
                     onComplete: () => {
+                        updateTime();
                         this.destroy();
                     }
                 });
@@ -57,6 +58,22 @@ class Interactable extends Phaser.Physics.Arcade.Sprite {
                 this.play('book_turn');
                 this.once('animationcomplete', () => {
                     updateTime();
+                    this.destroy();
+                });
+                break;
+            case 'soccer':
+                // Soccer ball bounces up and down a few times before disappearing. 
+                this.scene.tweens.add({
+                    targets: this,
+                    y: this.y - 150,
+                    duration: 500,
+                    ease: 'Power2',
+                    yoyo: true,
+                    repeat: 2,
+                    onComplete: () => {
+                        updateTime();
+                        this.destroy();
+                    }
                 });
                 break;
             default:

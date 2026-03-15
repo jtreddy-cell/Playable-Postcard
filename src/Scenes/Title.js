@@ -4,15 +4,21 @@ class Title extends Phaser.Scene {
     }
 
     preload() {
+        // backgrounds
         this.load.image('title', './assets/backgrounds/title.png');
         this.load.image('morning', './assets/backgrounds/morning.png');
         this.load.image('noon', './assets/backgrounds/noon.png');
         this.load.image('afternoon', './assets/backgrounds/afternoon.png');
         this.load.image('evening', './assets/backgrounds/evening.png');
         this.load.image('message', './assets/backgrounds/message.png');
+
+        // sprites 
         this.load.image('football', './assets/football.png');
+        this.load.image('soccer', './assets/soccer.png');
         this.load.spritesheet('squirrel', './assets/squirrel.png', { frameWidth: 48, frameHeight: 48 });
         this.load.atlas("book", "assets/book.png", "assets/book.json");
+
+        // audio
         this.load.audio('bgm', './assets/bgm.mp3');
         this.load.audio('interaction', './assets/interact.wav');
         this.load.audio('squirrel_sound', './assets/squirrel.mp3');
@@ -61,7 +67,7 @@ class Title extends Phaser.Scene {
                 bottom: 5,
             }
         }
-        this.add.text(10, game.config.height - 60, 'Credits:\nArt Credits:\nFootball sprite by helac_dokugan on itch.io\nBook Sprite by Stagnation on OpenGameArt.org\nSquirrel Sprite by Elthens Pixel Art Shop on itch.io\nAudio Credits:\nMusic by juliush on Pixabay\nSquirrel sound effect by floraphonic on Pixabay\n', creditConfig).setOrigin(0, 0.5);
+        this.add.text(10, game.config.height - 70, 'Credits:\nArt Credits:\nFootball sprite by helac_dokugan on itch.io\nBook Sprite by Stagnation on OpenGameArt.org\nSoccer ball sprite by BeeMaxStudio on itch.io\nSquirrel Sprite by Elthens Pixel Art Shop on itch.io\nAudio Credits:\nMusic by juliush on Pixabay\nSquirrel sound effect by floraphonic on Pixabay\n', creditConfig).setOrigin(0, 0.5);
 
     }
 
