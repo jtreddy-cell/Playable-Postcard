@@ -68,7 +68,7 @@ class Title extends Phaser.Scene {
                 bottom: 5,
             }
         }
-        this.add.text(10, game.config.height - 70, 'Credits:\nArt Credits:\nFootball sprite by helac_dokugan on itch.io\nBook Sprite by Stagnation on OpenGameArt.org\nSoccer ball sprite by BeeMaxStudio on itch.io\nSquirrel Sprite by Elthens Pixel Art Shop on itch.io\nAudio Credits:\nMusic by juliush on Pixabay\nSquirrel sound effect by floraphonic on Pixabay\n', creditConfig).setOrigin(0, 0.5);
+        this.add.text(10, game.config.height - 70, 'Art Credits:\nFootball sprite by helac_dokugan on itch.io\nBook Sprite by Stagnation on OpenGameArt.org\nSoccer ball sprite by BeeMaxStudio on itch.io\nSquirrel Sprite by Elthens Pixel Art Shop on itch.io\n \nAudio Credits:\nMusic by juliush on Pixabay\nSounds effects from floraphonic on pixabay and https://mixkit.co/free-sound-effects/game/\n', creditConfig).setOrigin(0, 0.5);
 
     }
 

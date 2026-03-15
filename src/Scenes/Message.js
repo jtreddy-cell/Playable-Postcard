@@ -4,55 +4,52 @@ class Message extends Phaser.Scene {
     }
 
     create() {
-        let h = this.scale.height;
+        this.h = this.scale.height;
 
         // container for whole vertical stack
         this.transitionContainer = this.add.container(0, 0);
 
         // backgrounds
-        let parkBG = this.add.image(0, 0, 'evening').setOrigin(0, 0);
-        let transitionBG = this.add.image(0, -h * 2, 'transition').setOrigin(0, 0);
-        let messageBG = this.add.image(0, -h * 3, 'message').setOrigin(0, 0);
+        this.parkBG = this.add.image(0, 0, 'evening').setOrigin(0, 0);
+        this.transitionBG = this.add.image(0, -this.h * 2, 'transition').setOrigin(0, 0);
+        this.messageBG = this.add.image(0, -this.h * 3, 'message').setOrigin(0, 0);
 
         let textConfig = {
             fontFamily: 'Courier',
-            fontSize: '32px',
+            fontSize: '16px',
             color: '#FFFFFF',
             align: 'center',
             padding: { top: 5, bottom: 5 }
         };
 
-        let msgText = this.add.text(
+        this.msgText = this.add.text(
             this.scale.width / 2,
-            -h * 3 + h / 2 - 100,
-            'really cool and sick message',
+            -this.h * 3 + this.h / 2,
+            'Hey Ashish,\n Thanks for playing my postcard. You\'ve been a great\nfriend since middle school, and this was just something\n to try and relive some of the times we spent back in\n Country Brook. Thanks for the good times, I wouldn\'t be who\n I am today if it weren\'t for you.I miss you bro, hopefully\n it won\'t be too long until we can see each other again.\n Thanks, Jay. \n \n \n \n \n \n \n \n Click anywhere to play again.',
             textConfig
         ).setOrigin(0.5);
 
         // add all backgrounds
         this.transitionContainer.add([
-            parkBG,
-            transitionBG,
-            messageBG,
-            msgText
+            this.parkBG,
+            this.transitionBG,
+            this.messageBG,
+            this.msgText
         ]);
 
         // slide everything downward
         this.tweens.add({
             targets: this.transitionContainer,
-            y: h * 3,
+            y: this.h * 3,
             duration: 5000,
             ease: 'Cubic.easeOut',
         });
-
-        this.restartKey = this.input.keyboard.addKey(
-            Phaser.Input.Keyboard.KeyCodes.ENTER
-        );
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(this.restartKey)) {
-            this.scene.start('parkScene');
+        // restart game if player clicks 
+        if (this.input.activePointer.isDown) {
+            this.scene.start("titleScene");
         }
     }
 }
